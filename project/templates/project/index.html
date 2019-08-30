@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'project/style.css' %}">
+
+{% if latest_book_list %}
+    <ul>
+    {% for book in latest_book_list %}
+        <li><a href="{% url 'project:detail' book.id %}">{{ book.book_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No project are avaiable.</p>
+{% endif %}

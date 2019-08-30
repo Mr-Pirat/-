@@ -1,0 +1,12 @@
+<h1>{{ book.book_name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'project:change' book.id %}" method="post">
+{% csrf_token %}
+{% for change in book.change_set.all %}
+    <input type="project" name="change" id="change{{ forloop.counter }}" value="{{ change.id }}">
+    <label for="change{{ forloop.counter }}">{{ change.change_name }}</label><br>
+{% endfor %}
+<input type="submit" value="Save">
+</form>
